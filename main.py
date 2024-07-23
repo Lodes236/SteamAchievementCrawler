@@ -44,7 +44,7 @@ else:
     print(f'Folder "achievements" already exists at {folder_path}')
 
 # Request
-r = requests.get("https://steamcommunity.com/stats/1177980/achievements")
+r = requests.get("https://steamcommunity.com/stats/1177980/achievements") # put link to achievements here
 html_code = r.text
 
 steam_product = BeautifulSoup(html_code, 'html.parser')
@@ -55,7 +55,7 @@ image_urls = []
 image_names = []
 counter = 0
 
-# If DOC element is found start generating file names
+# If DOC element is found generate file names
 if main_contents:
     achieve_img_holders = main_contents.find_all('div', class_='achieveRow')
 
@@ -96,16 +96,10 @@ for i in image_urls:
             shutil.copyfileobj(res.raw, f)
         print('Image successfully Downloaded: ', file_name)
 
-        # Open the original image
+        # open downloaded image, resize it and overwrite original
         original_image = Image.open(full_path)
-
-        # Define the new size
         new_size = (64, 64)
-
-        # Resize the image
         resized_image = original_image.resize(new_size)
-
-        # Save the resized image, overwriting the original
         resized_image.save(full_path)
 
     else:
