@@ -44,7 +44,7 @@ else:
     print(f'Folder "achievements" already exists at {folder_path}')
 
 # Request
-r = requests.get("https://steamcommunity.com/stats/1177980/achievements") # put link to achievements here
+r = requests.get("https://steamcommunity.com/stats/1177980/achievements")  # put link to achievements here
 html_code = r.text
 
 steam_product = BeautifulSoup(html_code, 'html.parser')
